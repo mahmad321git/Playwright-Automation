@@ -1,42 +1,43 @@
-name: CI - Playwright
+name: Playwright Tests
 on:
-  push: { branches: [ master ] }
-  pull_request: { branches: [ master ] }
-  workflow_dispatch:
-
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 jobs:
   test:
-    runs-on: ubuntu-22.04
-
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Diagnose runner
-        run: |
-          cat /etc/os-release || true
-          node -v
-          npm -v
-          npx playwright --version || true
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
       
-      - name: List Playwright pkg
-        run: npm ls @playwright/test || true
-
-      - name: Install NPM deps
-        run: npm ci
-
-      # 👉 NEW: install browsers + OS packages using CLI (recommended)
-      - name: Install Playwright with deps
-        run: npx playwright install --with-deps
-
-      - name: Run tests
-        run: npx playwright test
-        # add env here if needed:
-        # env:
-        #   BASE_URL: ${{ vars.BASE_URL }}
-
-  
+    - name: Install Playwright browsers and dependencies
+      run: npx playwright install --with-deps
+      
+    - name: Run Playwright tests
+      run: npx playwright test
+      
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-test-results
+        path: test-results/
+        retention-days: 30
+        
+    - name: Upload HTML report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-html-report
+        path: playwright-report/
+        retention-days: 30
