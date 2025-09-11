@@ -38,7 +38,7 @@ test.describe('Employees', ()=>
 
     });
 
-    test.only('TC-004: Upload Invalid file type shows error on Add Employee photo', async({page}) =>
+    test('TC-004: Upload Invalid file type shows error on Add Employee photo', async({page}) =>
     {
         const pim = new PimPage(page);
         const form = new EmployeeFormPage(page);
