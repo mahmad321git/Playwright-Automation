@@ -16,6 +16,16 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Diagnose runner
+        run: |
+          cat /etc/os-release || true
+          node -v
+          npm -v
+          npx playwright --version || true
+      
+      - name: List Playwright pkg
+        run: npm ls @playwright/test || true
+
       - name: Install NPM deps
         run: npm ci
 
