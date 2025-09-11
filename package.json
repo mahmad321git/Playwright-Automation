@@ -1,12 +1,39 @@
 {
   "name": "playwright-automation",
   "version": "1.0.0",
+  "description": "A comprehensive end-to-end testing framework built with Playwright for automated testing of web applications",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:auth": "playwright test tests/auth.spec.js",
+    "test:employees": "playwright test tests/employees.*.spec.js",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "install:browsers": "playwright install"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "e2e",
+    "javascript",
+    "page-object-model",
+    "cross-browser"
+  ],
+  "author": "mahmad321git",
   "license": "ISC",
-  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mahmad321git/Playwright-Automation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mahmad321git/Playwright-Automation/issues"
+  },
+  "homepage": "https://github.com/mahmad321git/Playwright-Automation#readme",
   "devDependencies": {
     "@playwright/test": "^1.45.0",
     "@types/node": "^24.3.0"
