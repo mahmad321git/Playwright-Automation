@@ -26,7 +26,7 @@ jobs:
         npx playwright install-deps
       
     - name: Run Playwright tests
-      run: --headed  --project="chromium" tests/employees.delete.spec.js
+      run: --headed  --project="chromium" tests/auth.spec.js
       
     - name: Upload test results
       if: always()
