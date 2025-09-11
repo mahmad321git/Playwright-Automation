@@ -9,7 +9,7 @@ test('TC-001: Login with Valid Credentials', async ({page}) =>
     await expect(page).toHaveURL(/dashboard/);
 });
 
-test.only('TC-002: Login with invalid Password', async ({page}) =>
+test('TC-002: Login with invalid Password', async ({page}) =>
 {
     const auth = new AuthPage(page);
     await auth.goto();
