@@ -21,7 +21,7 @@ jobs:
 
       # 👉 NEW: install browsers + OS packages using CLI (recommended)
       - name: Install Playwright browsers + system deps
-        run: npx playwright install --with-deps
+        run: npx playwright install 
 
       - name: Run tests
         run: npx playwright test
